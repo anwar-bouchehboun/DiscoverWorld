@@ -27,6 +27,10 @@
 </section>
 {{-- cards --}}
 <section class="pt-10 lg:pt-[80px] pb-10 lg:pb-20 bg-[#F3F4F6]">
+    <div class="mx-auto md:w-96 lg:w-1/2 xl:w-1/3">
+        <input type="date" name="date" id="date" class="block w-full p-2 mt-1 border border-gray-300 rounded-md">
+      </div>
+
     <div class="p-4" >
      <h1 class="text-5xl font-bold tracking-tight text-center text-gray-900 sm:text-6xl"><em ></em> ADVENTURES <em class=" text-cyan-500"></em></h1>
     </div>
