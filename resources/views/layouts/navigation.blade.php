@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('Post')" :active="request()->routeIs('Post')">
+                    <x-nav-link :href="route('poste.index')" :active="request()->routeIs('Post')">
                         {{ __('Post') }}
                     </x-nav-link>
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
@@ -83,9 +83,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+                {{-- <x-responsive-nav-link :href="route('profile.edit')"> --}}
+                    {{-- {{ __('Profile') }} --}}
+                {{-- </x-responsive-nav-link> --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

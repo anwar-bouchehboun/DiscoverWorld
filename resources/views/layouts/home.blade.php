@@ -25,7 +25,7 @@
                     <li class="p-4 border-b border-gray-600 md:border-0"><a href="{{ url('/') }}" class="font-semibold hover:text-teal-950">Home</a></li>
                     @auth
                     <li class="p-4 font-semibold hover:text-teal-950 md:border-0">
-                        <a href="{{ url('/Post') }}">Post</a>
+                        <a href="{{ route('poste.index') }}">Post</a>
                     </li>
                     @else
                     <li id="drp-btn" class="p-2 hover:text-teal-950">
