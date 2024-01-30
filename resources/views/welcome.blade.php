@@ -7,7 +7,7 @@
             <h1 class="pb-6 text-6xl text-center text-white">DISCOVER WORLD</h1>
 
         </div>
-        <div class="px-6 py-20 mx-auto bg-black max-w-7xl lg:px-8">
+        <div class="px-6 py-20 mx-auto bg-sky-950 max-w-7xl lg:px-8">
           <dl class="grid grid-cols-1 text-center gap-x-8 gap-y-16 lg:grid-cols-3">
             <div class="flex flex-col max-w-xs mx-auto gap-y-4">
               <dt class="text-base leading-7 text-white">Transactions every 24 hours</dt>
