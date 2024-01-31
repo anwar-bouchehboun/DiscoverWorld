@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
+use App\Models\Recit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +14,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $Adventure = Recit::all();
 
-        return view('welcome');
+        // dd($images);
+        return view('welcome', compact('Adventure'));
     }
 
     /**
@@ -35,10 +39,11 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Image $item)
     {
-        //
-    }
+        $images = Image::where('recitsID', $item->id)->get();
+         dd($images);
+        }
 
     /**
      * Show the form for editing the specified resource.

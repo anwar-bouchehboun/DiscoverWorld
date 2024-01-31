@@ -35,13 +35,14 @@
      <h1 class="text-5xl font-bold tracking-tight text-center text-gray-900 sm:text-6xl"><em ></em> ADVENTURES <em class=" text-cyan-500"></em></h1>
     </div>
     <div class="container flex flex-col md:flex-row">
+      @foreach ($Adventure as $item)
+
+
+
+
           <div class="px-4 md:w-1/2 xl:w-1/3">
              <div class="mb-10 overflow-hidden bg-white rounded-lg">
-                <img
-                   src="https://cdn.tailgrids.com/1.0/assets/images/cards/card-01/image-01.jpg"
-                   alt="image"
-                   class="w-full"
-                   />
+
                 <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
                    <h3
 
@@ -55,39 +56,27 @@
                          xl:text-xl
                          2xl:text-[22px]
                          mb-4
-                         block
-                         hover:text-primary
+                          hover: text-teal-900
                          "
                          >
-                Nom prenom
+               {{$item->user->name}}
 
                    </h3>
-                   <h4>Date de naissance : 12/12/2012</h4>
-                   <p class="text-base leading-relaxed text-body-color mb-7">
-                      Filiere : Genie info <br>
-                      <span>  Annee : 3eme</span>
-                   </p>
+                   <h3 class="font-bold text-cyan-800 ">{{$item->title}}</h3>
+                   <span class="font-medium ">Paye:  {{$item->paye}} $ </span>
+                   <h4 class="font-semibold ">Desitnation: <em class=" text-blue-950">{{$item->city->destination}} </em></h4>
 
-                   <a
-                      href="javascript:void(0)"
-                      class="
-                      inline-block
-                      py-2
-                      px-7
-                      border border-[#2f4b82]
-                      rounded-full
-                      text-base text-body-color
-                      font-medium
-                      hover:border-primary hover:bg-primary hover:text-teal-800
-                      transition
-                      "
-                      >
-                        CHECK infos
-                   </a>
+                    <h5 class="mb-2 font-serif font-italic">{{$item->created_at}} </h5>
+
+                    <a href="{{ route('adventure.show', $item) }}"
+                    class="inline-block py-2 px-7 border border-[#2f4b82] rounded-full text-base text-body-color font-medium hover:border-primary hover:bg-primary hover:text-teal-800 transition">
+                    CHECK infos
+                </a>
+
                 </div>
              </div>
           </div>
-
+          @endforeach
     </div>
  </section>
 @endsection

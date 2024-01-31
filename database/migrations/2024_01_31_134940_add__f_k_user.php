@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recits', function (Blueprint $table) {
-            $table->id();
-            $table->double('paye');
-            $table->string('conseils');
-            $table->timestamps();
+        Schema::table('recits', function (Blueprint $table) {
+            $table->foreignId('userid')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -24,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recits');
+        Schema::table('recits', function (Blueprint $table) {
+            $table->dropForeign(['userid']);
+        });
     }
+
 };

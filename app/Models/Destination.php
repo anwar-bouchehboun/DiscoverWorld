@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     use HasFactory;
+    public function recit()
+    {
+        return $this->hasMany(Recit::class,"id");
+    }
 }

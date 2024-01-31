@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Recit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ImageController extends Controller
 {
@@ -12,7 +14,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+
+        //   return view('imagesposte.Addpost',compact('recit'));
     }
 
     /**
@@ -20,7 +23,8 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        $recit = Recit::all();
+        return view('imagesposte.Addpost', compact('recit'));
     }
 
     /**
@@ -28,8 +32,26 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+
+            foreach ($images as $image) {
+
+               $img= $image->store('public');
+                Image::create([
+                    'recitsID'=>$request->input('recit'),
+                    'image'=> $img,
+                ]);
+
+            }
+
+            Session::flash('success', 'Post added successfully!');
+        return redirect()->back();
+        }
+
+        return redirect()->back();
     }
+
 
     /**
      * Display the specified resource.

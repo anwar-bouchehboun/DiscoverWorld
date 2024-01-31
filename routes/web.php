@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PosteController;
 use App\Http\Controllers\ProfileController;
 
@@ -19,21 +20,18 @@ use App\Http\Controllers\ProfileController;
 // Route::get('/welcom', function () {
 //     return view('wlecom');
 // });
-Route::get('/', [HomeController::class,'index'])->name('home');
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/adventure/{item}', [HomeController::class, 'show'])->name('adventure.show');
 Route::get('/Post', function () {
     return view('Post');
 })->middleware(['auth', 'verified'])->name('Post');
 
 Route::middleware('auth')->group(function () {
-    // Route::get('/Addpost', function () {
-    //     return view('Addpost');
-    // })->name('AddPost');
     Route::resource('poste', PosteController::class);
-
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // ImageController
+    Route::resource('imagesposte', ImageController::class);    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

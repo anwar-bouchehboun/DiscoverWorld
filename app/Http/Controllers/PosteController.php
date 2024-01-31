@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recit;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PosteController extends Controller
 {
@@ -12,21 +14,37 @@ class PosteController extends Controller
      */
     public function index()
     {
-        $destination=Destination::all();
-        // dd($destination);
-        return view('poste.Post',compact('destination'));
+        $destination =Destination::all();
+
+        return view('poste.Post', compact('destination'));
     }
 
 
     public function create()
     {
-        return view('poste.Addpost');
+        // return view('imagesposte.Addpost');
     }
 
 
     public function store(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'paye' => 'required|string|max:255',
+            'conseils' => 'required|string|max:255',
+            'destinationID' => 'required|exists:destinations,id',
+        ]);
+
+        $userid = auth()->user()->id;
+
+        $validatedData['userid'] = $userid;
+
+        Recit::create($validatedData);
+
+        Session::flash('success', 'Post added successfully!');
+        return redirect()->back();
+
+
     }
 
     /**
