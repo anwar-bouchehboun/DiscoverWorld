@@ -12,7 +12,9 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        //
+        // $destination=Destination::all();
+        // dd($destination);
+        // return view('psote.Poste');
     }
 
     /**

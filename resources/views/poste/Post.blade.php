@@ -31,9 +31,10 @@
                   Destination
                 </label>
                 <select name="Destination" id="" class="px-20 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white">
-                    <option value="">SAFI</option>
-                    <option value="">CASA</option>
-                    <option value="">KECH</option>
+                    <option value="" selected disabled>Voir City</option>
+                   @foreach ($destination as $city)
+                   <option value="{{$city->id}}">{{$city->destination}}</option>
+                   @endforeach
                 </select>
 
               </div>

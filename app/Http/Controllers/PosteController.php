@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Destination;
 use Illuminate\Http\Request;
 
 class PosteController extends Controller
@@ -11,23 +12,21 @@ class PosteController extends Controller
      */
     public function index()
     {
-        return view('poste.Post');
+        $destination=Destination::all();
+        // dd($destination);
+        return view('poste.Post',compact('destination'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('poste.Addpost');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
