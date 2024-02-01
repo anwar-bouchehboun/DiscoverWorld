@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $Adventure = Recit::all();
        $countRecit=Recit::count();
-       $count = Recit::count('destinationID');
+       $count = Recit::distinct('destinationID')->count();
         $Users = User::count();
     $destination = Destination::all();
 
@@ -73,7 +73,7 @@ class HomeController extends Controller
                 if ($destination->count() > 0 && $destination!=null ) {
                     $Adventure = $destination;
                     $countRecit = Recit::count();
-                    $count = Recit::count('destinationID');
+                    $count = Recit::distinct('destinationID')->count();
                     $Users = User::count();
                     $destination = Destination::all();
                     return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
@@ -83,7 +83,7 @@ class HomeController extends Controller
                 $Adventure = null;
                 // dd($Adventure);
                 $countRecit = Recit::count();
-                $count = Recit::count('destinationID');
+                $count = Recit::distinct('destinationID')->count();
                 $Users = User::count();
                 $destination = Destination::all();
                 return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
@@ -118,7 +118,7 @@ class HomeController extends Controller
             $Adventure = $Adv->get();
 
             $countRecit = Recit::count();
-            $count = Recit::count('destinationID');
+            $count = Recit::distinct('destinationID')->count();
             $Users = User::count();
             $destination = Destination::all();
 
