@@ -53,11 +53,11 @@ class HomeController extends Controller
         // dd($images);
         $recit = Recit::findOrFail($item->id);
         $images = $recit->images;
-        $countRecit=Recit::count();
-        $count = Recit::count('destinationID');
+        // $countRecit=Recit::count();
+        // $count = Recit::count('destinationID');
         // $destination = Destination::all();
-         $Users = User::count();
-          return view('adventure',compact('images','recit','countRecit','count','Users'));
+        //  $Users = User::count();
+          return view('adventure',compact('images','recit'));
         }
 
 
@@ -116,7 +116,7 @@ class HomeController extends Controller
 
 
             $Adventure = $Adv->get();
-           
+
             $countRecit = Recit::count();
             $count = Recit::count('destinationID');
             $Users = User::count();

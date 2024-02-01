@@ -8,25 +8,31 @@
 
         </div>
         <div class="px-6 py-20 mx-auto bg-sky-950 max-w-7xl lg:px-8">
-          <dl class="grid grid-cols-1 text-center gap-x-8 gap-y-16 lg:grid-cols-3">
-            <div class="flex flex-col max-w-xs pb-3 mx-auto rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
-            gap-y-4   bg-sky-900">
-              <dt class="text-5xl text-white textleading-7">Adventure  Spécial</dt>
-              <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$countRecit}}</dd>
-            </div>
-            <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
-            gap-y-4   bg-sky-900">
-              <dt class="text-5xl text-white textleading-7">Destination</dt>
-              <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$count}}</dd>
-            </div>
-            <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
-            gap-y-4   bg-sky-900">
-              <dt class="text-5xl text-white textleading-7">Users Actif</dt>
-              <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                {{$Users}}
-            </dd>
-            </div>
-          </dl>
+            <dl class="grid grid-cols-1 text-center gap-x-8 gap-y-16 lg:grid-cols-3">
+              <div class="flex flex-col max-w-xs pb-3 px-10 mx-auto rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
+              gap-y-4   bg-sky-900">
+                <dt class="text-5xl text-white textleading-7">Adventure</dt>
+                <img src="/storage/recit/icons8-trekking-100.png" width="100px" alt="" srcset="" class="mx-auto">
+
+                <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$countRecit}}</dd>
+              </div>
+              <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
+              gap-y-4   bg-sky-900">
+                <dt class="text-5xl text-white textleading-7">Destination</dt>
+                <img src="/storage/recit/d.png" width="100px" alt="" srcset="" class="mx-auto">
+
+                <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$count}}</dd>
+              </div>
+              <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
+              gap-y-4   bg-sky-900">
+                <dt class="text-5xl text-white textleading-7">Users Actif</dt>
+                <img src="/storage/recit/users.png" width="100px" alt="" srcset="" class="mx-auto">
+
+                <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                  {{$Users}}
+              </dd>
+              </div>
+            </dl>
         </div>
      </div>
 </section>
@@ -92,7 +98,11 @@
         </div>
         @endforeach
         @else
-        <h1>No adventures available</h1>
+        <div class="mx-auto my-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-800 ">No adventures available</h1>
+            <p class="mt-2 text-gray-600">Sorry, there are no adventures to display at the moment.</p>
+        </div>
+
     @endif
 
     </div>

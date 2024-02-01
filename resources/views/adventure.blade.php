@@ -4,30 +4,37 @@
     <section>
         <div class="py-3 sm:py-32 bg-gradient-to-r from-cyan-300 to-blue-100">
             <div>
-                <h1 class="pb-6 text-6xl text-center text-white">DISCOVER WORLD</h1>
+                <h1 class="pb-6 text-6xl text-center text-white">Welcome to Our Awesome Website</h1>
+                <h4 class="pb-6 text-2xl text-center text-white">Discover amazing features and services that await you.</h4>
 
             </div>
-            <div class="px-6 py-20 mx-auto bg-sky-950 max-w-7xl lg:px-8">
+            {{-- <div class="px-6 py-20 mx-auto bg-sky-950 max-w-7xl lg:px-8">
                 <dl class="grid grid-cols-1 text-center gap-x-8 gap-y-16 lg:grid-cols-3">
-                  <div class="flex flex-col max-w-xs pb-3 mx-auto rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
+                  <div class="flex flex-col max-w-xs pb-3 px-10 mx-auto rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
                   gap-y-4   bg-sky-900">
-                    <dt class="text-5xl text-white textleading-7">Adventure  Spécial</dt>
+                    <dt class="text-5xl text-white textleading-7">Adventure</dt>
+                    <img src="/storage/recit/icons8-trekking-100.png" width="100px" alt="" srcset="" class="mx-auto">
+
                     <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$countRecit}}</dd>
                   </div>
                   <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
                   gap-y-4   bg-sky-900">
                     <dt class="text-5xl text-white textleading-7">Destination</dt>
+                    <img src="/storage/recit/d.png" width="100px" alt="" srcset="" class="mx-auto">
+
                     <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$count}}</dd>
                   </div>
                   <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
                   gap-y-4   bg-sky-900">
                     <dt class="text-5xl text-white textleading-7">Users Actif</dt>
+                    <img src="/storage/recit/users.png" width="100px" alt="" srcset="" class="mx-auto">
+
                     <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                       {{$Users}}
                   </dd>
                   </div>
                 </dl>
-              </div>
+            </div> --}}
         </div>
     </section>
     {{-- cards --}}
