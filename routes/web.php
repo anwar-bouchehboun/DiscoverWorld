@@ -22,6 +22,10 @@ use App\Http\Controllers\ProfileController;
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/adventure/{item}', [HomeController::class, 'show'])->name('adventure.show');
+Route::get('/filter-adventures', [HomeController::class, 'filterAdventures'])->name('filter.adventures');
+// filterdate
+Route::get('/filter-date', [HomeController::class, 'filterdate'])->name('filter');
+
 Route::get('/Post', function () {
     return view('Post');
 })->middleware(['auth', 'verified'])->name('Post');

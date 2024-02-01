@@ -33,7 +33,6 @@
                 </label>
                 <select name="destinationID" id="destination" class="px-20 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white">
                     <option value="" selected disabled>Choose City</option>
-                @dump($destination);
 
 
 

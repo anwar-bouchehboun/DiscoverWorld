@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\Recit;
 use App\Models\Destination;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,8 +21,10 @@ class HomeController extends Controller
        $countRecit=Recit::count();
        $count = Recit::count('destinationID');
         $Users = User::count();
+    $destination = Destination::all();
+
         //  dd($countRecit,$count,$totalUsers);
-        return view('welcome', compact('Adventure','countRecit','count','Users'));
+        return view('welcome', compact('Adventure','countRecit','count','Users','destination'));
     }
 
     /**
@@ -52,32 +55,74 @@ class HomeController extends Controller
         $images = $recit->images;
         $countRecit=Recit::count();
         $count = Recit::count('destinationID');
+        // $destination = Destination::all();
          $Users = User::count();
           return view('adventure',compact('images','recit','countRecit','count','Users'));
         }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        public function filterAdventures(Request $request)
+        {
+            $Adventure = Recit::all();
+             if($request->input('city')==''){
+                redirect('home');
+             }
+            if ($request->has('city')) {
+                $selectedCityId = $request->input('city');
+                $destination = Recit::where('destinationID', $selectedCityId)->get();
+                if ($destination->count() > 0 && $destination!=null ) {
+                    $Adventure = $destination;
+                    $countRecit = Recit::count();
+                    $count = Recit::count('destinationID');
+                    $Users = User::count();
+                    $destination = Destination::all();
+                    return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
 
-   }
+            }else{
+                $Adventure = null;
+                // dd($Adventure);
+                $countRecit = Recit::count();
+                $count = Recit::count('destinationID');
+                $Users = User::count();
+                $destination = Destination::all();
+                return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
+
+
+            }
+
+            }
+
+
+        }
+
+
+
+
+
+        public function filterdate(Request $request)
+        {
+            $Adv = Recit::query();
+           $date=$request->datefilter;
+
+             switch($date){
+                case 'recentes':$Adv->orderBy('created_at','DESC');
+
+                break;
+                case 'anciennes':$Adv->orderBy('created_at','ASC');
+                break;
+
+             }
+
+
+            $Adventure = $Adv->get();
+           
+            $countRecit = Recit::count();
+            $count = Recit::count('destinationID');
+            $Users = User::count();
+            $destination = Destination::all();
+
+            return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
+        }
+
 }

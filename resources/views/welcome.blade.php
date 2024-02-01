@@ -32,46 +32,73 @@
 </section>
 {{-- cards --}}
 <section class="pt-10 lg:pt-[80px] pb-10 lg:pb-20 bg-[#F3F4F6]">
-    <div class="flex flex-col gap-2 mx-32 lg:w-1/2 xl:w-1/3 md:flex-row">
-        <div class="">
-            <select name="" class="block w-56 p-2 mt-1 border border-gray-300 rounded-md md:w-96" id="">
-                <option value="">safi</option>
-            </select>
+    <form action="{{ route('filter.adventures') }}" method="get">
+        <div class="flex flex-col gap-2 mx-32 lg:w-1/2 xl:w-1/3 md:flex-row">
+            <div>
+                <select name="city" class="block w-56 p-2 mt-1 border border-gray-300 rounded-md md:w-96" onchange="this.form.submit()">
+                    <option value="" selected  >Choose City</option>
+                    @foreach ($destination as $recit)
+                        <option value="{{ $recit->id }}" {{ old('city') == $recit->id ? 'selected' : '' }}>
+                            {{ $recit->destination }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-        <div>
-            <input type="date" name="date" id="date" class= "block w-56 p-2 mt-1 border border-gray-300 rounded-md md:w-96">
+
+    </form>
+
+
+         <form action="{{route('filter')}}" method="get" class="">
+            <div class="flex mt-4 mx-28">
+              <select name="datefilter" class="block w-56 p-2 mt-1 border border-gray-300 ms-3 md:w-96">
+                <option value="">All</option>
+                <option value="recentes">recentes</option>
+                <option value="anciennes">anciennes</option>
+              </select>
+              <button type="submit" value="asc" class="px-4 py-2 mt-1 text-white bg-blue-500 ">Filtrer</button>
+            </div>
+         </form>
 
         </div>
-    </div>
+
+
+
 
     <div class="p-4" >
      <h1 class="text-5xl font-bold tracking-tight text-center text-gray-900 sm:text-6xl"><em ></em> ADVENTURES <em class=" text-cyan-500"></em></h1>
     </div>
 
     <div class="container flex flex-wrap">
-        @foreach ($Adventure as $item)
-            <div class="w-full px-4 mb-8 md:w-1/2 xl:w-1/3">
-                <div class="overflow-hidden bg-white rounded-lg">
-                    <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                        <h3 class="mb-4 text-xl font-semibold text-dark sm:text-2xl md:text-xl lg:text-2xl xl:text-xl 2xl:text-2xl hover:text-teal-900">
-                            {{$item->title}}
-                        </h3>
-                        {{-- <h3 class="font-bold text-cyan-800">{{$item->user->name}}</h3> --}}
-                        <span class="font-medium">Paye: {{$item->paye}} $</span>
-                        <h4 class="font-semibold">Destination: <em class="text-blue-950">{{$item->city->destination}}</em></h4>
-                        <h5 class="mb-2 font-serif font-italic">{{$item->created_at}}</h5>
-                        <a href="{{ route('adventure.show', $item) }}" class="inline-block py-2 px-7 border border-[#2f4b82] rounded-full text-base text-body-color font-medium hover:border-primary hover:bg-primary hover:text-teal-800 transition">
-                            CHECK infos
-                        </a>
-                    </div>
+        @if($Adventure)
+        @foreach ( $Adventure as $item )
+
+
+        <div class="w-full px-4 mb-8 md:w-1/2 xl:w-1/3">
+            <div class="overflow-hidden bg-white rounded-lg">
+                <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                    <h3 class="mb-4 text-xl font-semibold text-dark sm:text-2xl md:text-xl lg:text-2xl xl:text-xl 2xl:text-2xl hover:text-teal-900">
+                        {{$item->title}}
+                    </h3>
+                    {{-- <h3 class="font-bold text-cyan-800">{{$item->user->name}}</h3> --}}
+                    <span class="font-medium">Paye: {{$item->paye}} $</span>
+                    <h4 class="font-semibold">Destination: <em class="text-blue-950">{{$item->city->destination}}</em></h4>
+                    <h5 class="mb-2 font-serif font-italic">{{$item->created_at}}</h5>
+                    <a href="{{ route('adventure.show', $item) }}" class="inline-block py-2 px-7 border border-[#2f4b82] rounded-full text-base text-body-color font-medium hover:border-primary hover:bg-primary hover:text-teal-800 transition">
+                        CHECK infos
+                    </a>
                 </div>
             </div>
+        </div>
         @endforeach
+        @else
+        <h1>No adventures available</h1>
+    @endif
+
     </div>
 
  </section>
 @endsection
-
 
 
 
