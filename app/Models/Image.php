@@ -12,8 +12,8 @@ class Image extends Model
             'recitsID',
             'image',
     ];
-    
+
     public function recit() {
-        return $this->belongsTo(Recit::class,'recitsID');
+        return $this->belongsTo(Recit::class,'id');
     }
 }

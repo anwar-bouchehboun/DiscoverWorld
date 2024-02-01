@@ -23,8 +23,8 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $recit = Recit::all();
-        return view('imagesposte.Addpost', compact('recit'));
+        // $recit = Recit::all();
+        // return view('imagesposte.Addpost', compact('recit'));
     }
 
     /**
@@ -32,24 +32,28 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('images')) {
-            $images = $request->file('images');
+        // $request->validate([
+        //     'images' => 'required|array|max:6',
+        // ]);
 
-            foreach ($images as $image) {
+        // if ($request->hasFile('images')) {
+        //     $images = $request->file('images');
 
-               $img= $image->store('public');
-                Image::create([
-                    'recitsID'=>$request->input('recit'),
-                    'image'=> $img,
-                ]);
+        //     foreach ($images as $image) {
 
-            }
+        //         $img = $image->store('public','public');
+        //         Image::create([
+        //             'recitsID' => $request->input('recit'),
+        //             'image' => $img,
+        //         ]);
 
-            Session::flash('success', 'Post added successfully!');
-        return redirect()->back();
-        }
+        //     }
 
-        return redirect()->back();
+        //     Session::flash('success', 'Post added successfully!');
+        //     return redirect()->back();
+        // }
+
+        // return redirect()->back();
     }
 
 

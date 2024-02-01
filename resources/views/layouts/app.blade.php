@@ -34,4 +34,19 @@
             </main>
 
     </body>
+    <script>
+  var container = document.getElementById('image-container');
+
+function addImage() {
+  var newInput = document.createElement('input');
+  newInput.type = 'file';
+  newInput.name = 'images[]'; // Use 'images[]' to match the existing input
+  newInput.required = true;
+  newInput.classList.add('block', 'py-[8px]', 'outline-none', 'w-full', 'bg-white', 'rounded-lg', 'text-sm', 'text-slate-500', 'file:mr-4', 'file:py-2', 'file:ml-2', 'file:px-4', 'file:rounded-md', 'file:border-0', 'file:text-sm', 'file:font-semibold', 'file:bg-blue-50', 'file:text-blue-700', 'hover:file:bg-blue-100');
+
+  container.appendChild(newInput);
+}
+    </script>
+
+
 </html>

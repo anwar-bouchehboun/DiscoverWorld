@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Image;
 use App\Models\Recit;
+use App\Models\Destination;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,9 +17,11 @@ class HomeController extends Controller
     public function index()
     {
         $Adventure = Recit::all();
-
-        // dd($images);
-        return view('welcome', compact('Adventure'));
+       $countRecit=Recit::count();
+       $count = Recit::count('destinationID');
+        $Users = User::count();
+        //  dd($countRecit,$count,$totalUsers);
+        return view('welcome', compact('Adventure','countRecit','count','Users'));
     }
 
     /**
@@ -39,10 +43,15 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Image $item)
-    {
-        $images = Image::where('recitsID', $item->id)->get();
-         dd($images);
+    public function show(Recit $item)
+     {
+    //  $recit = Recit::findOrFail($item->id);
+    //     $images = Image::where('recitsID', $recit->id)->get();
+        // dd($images);
+        $recit = Recit::findOrFail($item->id);
+        $images = $recit->images;
+        // dd( $recit, $images);
+          return view('adventure',compact('images','recit'));
         }
 
     /**
@@ -67,5 +76,6 @@ class HomeController extends Controller
     public function destroy(string $id)
     {
         //
-    }
+
+   }
 }

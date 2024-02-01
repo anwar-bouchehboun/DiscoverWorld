@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Recit;
 use App\Models\Destination;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class PosteController extends Controller
      */
     public function index()
     {
-        $destination =Destination::all();
+        $destination = Destination::all();
 
         return view('poste.Post', compact('destination'));
     }
@@ -30,22 +31,37 @@ class PosteController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'paye' => 'required|string|max:255',
-            'conseils' => 'required|string|max:255',
+            'paye' => 'required|numeric',
+            'conseils' => 'required|string|max:1000',
             'destinationID' => 'required|exists:destinations,id',
         ]);
 
-        $userid = auth()->user()->id;
+        $validatedData['userid'] = auth()->user()->id;
 
-        $validatedData['userid'] = $userid;
+         $recit = Recit::create($validatedData);
 
-        Recit::create($validatedData);
 
-        Session::flash('success', 'Post added successfully!');
-        return redirect()->back();
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('recit','public');
+                    //  dd( $path);
+                $recit->images()->create([
+                    // 'path' => $path,
+                    'image' => $path,
+                ]);
+            }
+
+
+            Session::flash('success', 'Post added successfully!');
+            return redirect()->back();
+        }
+
+
 
 
     }
+
 
     /**
      * Display the specified resource.

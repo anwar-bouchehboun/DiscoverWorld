@@ -13,7 +13,7 @@ class Recit extends Model
         'conseils',
         'destinationID',
         'title',
-       'userid'
+        'userid'
     ];
     public function city()
     {
@@ -21,10 +21,10 @@ class Recit extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class,'userid');
+        return $this->belongsTo(User::class, 'userid');
     }
     public function images()
     {
-        return $this->hasMany(Image::class,'id');
+        return $this->hasMany(Image::class,'recitsID');
     }
 }
