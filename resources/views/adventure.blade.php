@@ -9,21 +9,25 @@
             </div>
             <div class="px-6 py-20 mx-auto bg-sky-950 max-w-7xl lg:px-8">
                 <dl class="grid grid-cols-1 text-center gap-x-8 gap-y-16 lg:grid-cols-3">
-                    <div class="flex flex-col max-w-xs mx-auto gap-y-4">
-                        <dt class="text-base leading-7 text-white">Transactions every 24 hours</dt>
-                        <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">44 million</dd>
-                    </div>
-                    <div class="flex flex-col max-w-xs mx-auto gap-y-4">
-                        <dt class="text-base leading-7 text-white">Assets under holding</dt>
-                        <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">$119 trillion
-                        </dd>
-                    </div>
-                    <div class="flex flex-col max-w-xs mx-auto gap-y-4">
-                        <dt class="text-base leading-7 text-white ">New users annually</dt>
-                        <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">46,000</dd>
-                    </div>
+                  <div class="flex flex-col max-w-xs pb-3 mx-auto rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
+                  gap-y-4   bg-sky-900">
+                    <dt class="text-5xl text-white textleading-7">Adventure  Spécial</dt>
+                    <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$countRecit}}</dd>
+                  </div>
+                  <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
+                  gap-y-4   bg-sky-900">
+                    <dt class="text-5xl text-white textleading-7">Destination</dt>
+                    <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$count}}</dd>
+                  </div>
+                  <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
+                  gap-y-4   bg-sky-900">
+                    <dt class="text-5xl text-white textleading-7">Users Actif</dt>
+                    <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                      {{$Users}}
+                  </dd>
+                  </div>
                 </dl>
-            </div>
+              </div>
         </div>
     </section>
     {{-- cards --}}
@@ -37,8 +41,8 @@
                 <h2 class="mx-auto my-3 text-6xl font-semibold text-center border-b-4 border-l-4 border-blue-500 ">{{ $recit->title }}</h2>
                 <div class="flex flex-wrap justify-center gap-2">
                     @foreach ($images as $image)
-                        <img src="/storage/{{$image->image}}  " class="" width="350px" alt="adventure image">
-                        @endforeach
+                    <img src="/storage/{{ $image->image }}" class="object-cover h-60 w-60" alt="adventure image">
+                    @endforeach
                 </div>
                 <div class="p-6">
 

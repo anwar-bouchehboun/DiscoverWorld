@@ -42,6 +42,12 @@
                     @auth
                     <li class="p-4 font-semibold hover:text-teal-950 md:border-0">
                         <a href="{{ route('poste.index') }}">Post</a>
+                        <li class="p-4 font-semibold hover:text-teal-950 md:border-0">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
                     </li>
                     @else
                     <li id="drp-btn" class="p-2 hover:text-teal-950">
@@ -87,11 +93,11 @@
             menu.classList.toggle('hidden');
         });
 
-        const drpbtn = document.getElementById('drp-btn');
-        const drpList = document.getElementById('drp-list'); // Add id to the dropdown list
-        drpbtn.addEventListener('click', () => {
-            drpList.classList.toggle('hidden');
-        });
+        // const drpbtn = document.getElementById('drp-btn');
+        // const drpList = document.getElementById('drp-list'); // Add id to the dropdown list
+        // drpbtn.addEventListener('click', () => {
+        //     drpList.classList.toggle('hidden');
+        // });
     </script>
 </body>
 </html>
