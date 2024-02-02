@@ -8,7 +8,7 @@
                 <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-first-name">
                     title
                 </label>
-                <input name="title" class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Titre" value="{{ old('titre') }}">
+                <input name="title" class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Titre" value="{{ old('title') }}">
                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
             </div>
             <div class="px-3 mb-6 md:w-1/2 md:mb-0">
@@ -55,8 +55,9 @@
               </label>
               <div id="image-container">
                 <input name="images[]" class="block w-full px-4 py-5 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="file">
-              </div>
-              <x-input-error :messages="$errors->get('images')" class="mt-2" />
+            </div>
+            <x-input-error :messages="$errors->get('images')" class="mt-2" />
+
               <button type="button" class= "px-2 font-semibold text-white uppercase bg-blue-800 border rounded-md " onclick="addImage()">Add file Image</button>
             </div>
           </div>

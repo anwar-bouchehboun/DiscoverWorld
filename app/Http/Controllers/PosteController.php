@@ -26,12 +26,15 @@ class PosteController extends Controller
 
     public function create()
     {
-         return view('poste.Poste');
+        return view('poste.Poste');
     }
 
 
     public function store(Request $request)
     {
+
+
+
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'paye' => 'required|numeric',
@@ -39,16 +42,22 @@ class PosteController extends Controller
             'destinationID' => 'required|exists:destinations,id',
         ]);
 
-        $validatedData['userid'] = auth()->user()->id;
 
-         $recit = Recit::create($validatedData);
+        $validatedData['userid'] = auth()->user()->id;
+        // $request->validate([
+        //     'images' => 'required|max:5',
+
+        // ]);
+        //  $recit = Recit::create($validatedData);
 
 
 
         if ($request->hasFile('images')) {
+
+            $recit = Recit::create($validatedData);
             foreach ($request->file('images') as $image) {
-                $path = $image->store('recit','public');
-                    //  dd( $path);
+                $path = $image->store('recit', 'public');
+                //  dd( $path);
                 $recit->images()->create([
                     // 'path' => $path,
                     'image' => $path,
@@ -59,7 +68,6 @@ class PosteController extends Controller
             Session::flash('success', 'Post added successfully!');
             return redirect()->back();
         }
-
 
 
 
