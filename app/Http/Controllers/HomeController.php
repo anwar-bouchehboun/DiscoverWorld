@@ -27,25 +27,19 @@ class HomeController extends Controller
         return view('welcome', compact('Adventure','countRecit','count','Users','destination'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+ 
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Recit $item)
      {
     //  $recit = Recit::findOrFail($item->id);
@@ -53,10 +47,6 @@ class HomeController extends Controller
         // dd($images);
         $recit = Recit::findOrFail($item->id);
         $images = $recit->images;
-        // $countRecit=Recit::count();
-        // $count = Recit::count('destinationID');
-        // $destination = Destination::all();
-        //  $Users = User::count();
           return view('adventure',compact('images','recit'));
         }
 
