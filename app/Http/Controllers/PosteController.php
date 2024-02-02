@@ -6,6 +6,7 @@ use App\Models\Image;
 use App\Models\Recit;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
 class PosteController extends Controller
@@ -15,7 +16,9 @@ class PosteController extends Controller
      */
     public function index()
     {
-        $destination = Destination::all();
+        $destination = Cache::remember('destinations_all', 60, function () {
+            return Destination::all();
+        });
 
         return view('poste.Post', compact('destination'));
     }

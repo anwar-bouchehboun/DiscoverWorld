@@ -154,20 +154,21 @@ class HomeController extends Controller
         $munit = 60;
         $Adv = Recit::query();
         $date = $request->datefilter;
+        $Adventure = Cache::remember('recit_' . $date, $munit, function () use ($Adv, $date) {
+            switch ($date) {
+                case 'recentes':
+                    $Adv->orderBy('created_at', 'DESC');
+                    break;
+                case 'anciennes':
+                    $Adv->orderBy('created_at', 'ASC');
+                    break;
+                default:
+                    break;
+            }
 
-        switch ($date) {
-            case 'recentes':
-                $Adv->orderBy('created_at', 'DESC');
-                break;
-            case 'anciennes':
-                $Adv->orderBy('created_at', 'ASC');
-                break;
-            default:
-                break;
-        }
+            return $Adv->get();
+        });
 
-
-        $Adventure = $Adv->get();
 
         $countRecit = Cache::remember('Recit_key', $munit, function () {
             return Recit::count();
