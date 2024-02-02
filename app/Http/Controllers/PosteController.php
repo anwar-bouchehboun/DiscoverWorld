@@ -44,10 +44,10 @@ class PosteController extends Controller
 
 
         $validatedData['userid'] = auth()->user()->id;
-        // $request->validate([
-        //     'images' => 'required|max:5',
+        $request->validate([
+            'images' => 'required|max:6',
 
-        // ]);
+        ]);
         //  $recit = Recit::create($validatedData);
 
 
@@ -58,6 +58,7 @@ class PosteController extends Controller
             foreach ($request->file('images') as $image) {
                 $path = $image->store('recit', 'public');
                 //  dd( $path);
+
                 $recit->images()->create([
                     // 'path' => $path,
                     'image' => $path,
