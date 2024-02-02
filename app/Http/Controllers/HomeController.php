@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Recit;
 use App\Models\Destination;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -17,16 +18,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $Adventure = Recit::all();
-        $countRecit = Recit::count();
+        $munit=60;
+        $Adventure = Cache::remember('adventure_key', $munit, function () {
+            return Recit::all();
+        });
+        $countRecit = Cache::remember('Recit_key', $munit, function () {
+            return Recit::count();
+        });
+        // $countRecit = Recit::count();
         // $countRecit = Recit::join('users', 'recits.userid', '=', 'users.id')->count();
-        $count = Recit::distinct('destinationID')->count();
+        $count = Cache::remember('destination_key', $munit, function () {
+            return Recit::distinct('destinationID')->count();
+        });
+        // $count = Recit::distinct('destinationID')->count();
         // $Users = User::count();
         $Users = User::join('recits', 'users.id', '=', 'recits.userid')
         ->distinct()
         ->count('users.id');
-
-        $destination = Destination::all();
+        $Users=Cache::remember('users_key',$munit,function(){
+            return User::join('recits', 'users.id', '=', 'recits.userid')
+            ->distinct()
+            ->count('users.id');
+        });
+        $destination=Cache::remember('City_key',$munit,function(){
+            return Destination::all();
+        });
+        // $destination = Destination::all();
 
         //  dd($countRecit,$count,$totalUsers);
         return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
