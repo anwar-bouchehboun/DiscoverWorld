@@ -16,9 +16,12 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
-        $munit=60;
+        $munit = 60;
+
         $Adventure = Cache::remember('adventure_key', $munit, function () {
             return Recit::all();
         });
@@ -32,15 +35,15 @@ class HomeController extends Controller
         });
         // $count = Recit::distinct('destinationID')->count();
         // $Users = User::count();
-        $Users = User::join('recits', 'users.id', '=', 'recits.userid')
-        ->distinct()
-        ->count('users.id');
-        $Users=Cache::remember('users_key',$munit,function(){
+        // $Users = User::join('recits', 'users.id', '=', 'recits.userid')
+        // ->distinct()
+        // ->count('users.id');
+        $Users = Cache::remember('users_key', $munit, function () {
             return User::join('recits', 'users.id', '=', 'recits.userid')
-            ->distinct()
-            ->count('users.id');
+                ->distinct()
+                ->count('users.id');
         });
-        $destination=Cache::remember('City_key',$munit,function(){
+        $destination = Cache::remember('City_key', $munit, function () {
             return Destination::all();
         });
         // $destination = Destination::all();
@@ -61,13 +64,17 @@ class HomeController extends Controller
         //
     }
 
-
-    public function show(Recit $item)
-    {
-        //  $recit = Recit::findOrFail($item->id);
+ //  $recit = Recit::findOrFail($item->id);
         //     $images = Image::where('recitsID', $recit->id)->get();
         // dd($images);
-        $recit = Recit::findOrFail($item->id);
+    public function show(Recit $item)
+    {
+
+        $cacheKey = 'recit_' . $item->id;
+
+        $recit = Cache::remember($cacheKey, 60, function () use ($item) {
+            return Recit::with('images')->findOrFail($item->id);
+        });
         $images = $recit->images;
         return view('adventure', compact('images', 'recit'));
     }
@@ -75,37 +82,59 @@ class HomeController extends Controller
 
     public function filterAdventures(Request $request)
     {
-        $Adventure = Recit::all();
+        $munit = 60;
+
+        $Adventure = Cache::remember('adventure_key', $munit, function () {
+            return Recit::all();
+        });
         if ($request->input('city') == '') {
             redirect('home');
         }
         if ($request->has('city')) {
             $selectedCityId = $request->input('city');
-            $destination = Recit::where('destinationID', $selectedCityId)->get();
+            $cacheKey = 'destination_' . $selectedCityId;
+            $destination = Cache::remember($cacheKey, 60, function () use ($selectedCityId) {
+                return Recit::where('destinationID', $selectedCityId)->get();
+            });
+            // $destination = Recit::where('destinationID', $selectedCityId)->get();
             if ($destination->count() > 0 && $destination != null) {
                 $Adventure = $destination;
-                $countRecit = Recit::count();
-                $count = Recit::distinct('destinationID')->count();
+                $countRecit = Cache::remember('Recit_key', $munit, function () {
+                    return Recit::count();
+                });
+                $count = Cache::remember('destination_key', $munit, function () {
+                    return Recit::distinct('destinationID')->count();
+                });
                 // $Users = User::count();
-                $Users = User::join('recits', 'users.id', '=', 'recits.userid')
-                ->distinct()
-                ->count('users.id');
+                $Users = Cache::remember('users_key', $munit, function () {
+                    return User::join('recits', 'users.id', '=', 'recits.userid')
+                        ->distinct()
+                        ->count('users.id');
+                });
 
-                $destination = Destination::all();
+                $destination = Cache::remember('City_key', $munit, function () {
+                    return Destination::all();
+                });
                 return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
 
 
             } else {
                 $Adventure = null;
                 // dd($Adventure);
-                $countRecit = Recit::count();
-                $count = Recit::distinct('destinationID')->count();
+                $countRecit = Cache::remember('Recit_key', $munit, function () {
+                    return Recit::count();
+                });
+                $count = Cache::remember('destination_key', $munit, function () {
+                    return Recit::distinct('destinationID')->count();
+                });
                 // $Users = User::count();
                 $Users = User::join('recits', 'users.id', '=', 'recits.userid')
-                ->distinct()
-                ->count('users.id');
+                    ->distinct()
+                    ->count('users.id');
 
-                $destination = Destination::all();
+                $destination = Cache::remember('City_key', $munit, function () {
+                    return Destination::all();
+                });
                 return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
 
 
@@ -122,6 +151,7 @@ class HomeController extends Controller
 
     public function filterdate(Request $request)
     {
+        $munit = 60;
         $Adv = Recit::query();
         $date = $request->datefilter;
 
@@ -139,14 +169,19 @@ class HomeController extends Controller
 
         $Adventure = $Adv->get();
 
-        $countRecit = Recit::count();
+        $countRecit = Cache::remember('Recit_key', $munit, function () {
+            return Recit::count();
+        });
+        $count = Cache::remember('destination_key', $munit, function () {
+            return Recit::distinct('destinationID')->count();
+        });
         $Users = User::join('recits', 'users.id', '=', 'recits.userid')
-        ->distinct()
-        ->count('users.id');
+            ->distinct()
+            ->count('users.id');
 
-        $count = Recit::distinct('destinationID')->count();
-        // $Users = User::count();
-        $destination = Destination::all();
+        $destination = Cache::remember('City_key', $munit, function () {
+            return Destination::all();
+        });
 
         return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
     }
