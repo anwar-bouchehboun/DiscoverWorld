@@ -104,8 +104,8 @@
         @foreach ( $Adventure as $item )
 
 
-        <div class="w-full px-4 mb-8 md:w-1/2 xl:w-1/3">
-            <div class="overflow-hidden bg-white rounded-lg">
+        <div class="w-full px-4 mb-8 md:w-1/2 xl:w-1/3 group">
+            <div class="overflow-hidden transition-all duration-300 transform bg-white rounded-lg group-hover:scale-105 hover:bg-blue-400 hover:text-teal-900">
                 <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
                     <h3 class="mb-4 text-xl font-semibold text-dark sm:text-2xl md:text-xl lg:text-2xl xl:text-xl 2xl:text-2xl hover:text-teal-900">
                         {{$item->title}}
@@ -120,6 +120,8 @@
                 </div>
             </div>
         </div>
+
+
         @endforeach
         @else
         <div class="mx-auto my-8 text-center">

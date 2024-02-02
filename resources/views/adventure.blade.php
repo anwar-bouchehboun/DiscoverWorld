@@ -3,7 +3,15 @@
 {{-- section hero --}}
 @section('content')
     <section>
-        <div class="py-3 sm:py-32 bg-gradient-to-r from-cyan-300 to-blue-100">
+        <div class="relative font-[sans-serif] before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-50 before:z-10">
+            <img src="https://readymadeui.com/cardImg.webp" alt="Banner Image" class="absolute inset-0 object-cover w-full h-full" />
+            <div class="min-h-[380px] relative z-50 h-full max-w-6xl mx-auto flex flex-col justify-center items-center text-center text-white p-6">
+              <h2 class="mb-6 text-2xl font-bold sm:text-4xl">WShowcase Your Adventure for people</h2>
+              <p class="text-base text-center text-gray-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan, nunc et tempus blandit, metus mi consectetur nibh, a pharetra felis turpis vitae ligula. Etiam laoreet velit nec neque ultrices, non consequat mauris tincidunt.</p>
+
+            </div>
+          </div>
+        {{-- <div class="py-3 sm:py-32 bg-gradient-to-r from-cyan-300 to-blue-100">
 
             <div>
                 <h1 class="pb-6 text-6xl text-center text-white">Welcome to Our Awesome Website</h1>
@@ -11,7 +19,7 @@
 
             </div>
 
-        </div>
+        </div> --}}
         {{-- <div class="relative max-w-5xl px-4 mx-auto mt-16 text-center sm:px-10">
             <h1 class="lg:text-7xl md:text-6xl text-4xl font-bold mb-6 md:!leading-[80px]">Build Landing Pages with Typeform
               Integration</h1>

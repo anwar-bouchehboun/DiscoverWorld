@@ -1,4 +1,4 @@
-<title>@yield('title')</title>
+@section('title', 'Poste')
 <x-app-layout>
 <div class="w-[60%] mx-auto mt-7">
     <form action="{{ route('poste.store') }}" method="post" enctype="multipart/form-data">

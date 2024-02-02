@@ -22,7 +22,9 @@ class HomeController extends Controller
         // $countRecit = Recit::join('users', 'recits.userid', '=', 'users.id')->count();
         $count = Recit::distinct('destinationID')->count();
         // $Users = User::count();
-        $Users = Recit::join('users', 'recits.userid', '=', 'users.id')->count();
+        $Users = User::join('recits', 'users.id', '=', 'recits.userid')
+        ->distinct()
+        ->count('users.id');
 
         $destination = Destination::all();
 
@@ -68,7 +70,9 @@ class HomeController extends Controller
                 $countRecit = Recit::count();
                 $count = Recit::distinct('destinationID')->count();
                 // $Users = User::count();
-                $Users = Recit::join('users', 'recits.userid', '=', 'users.id')->count();
+                $Users = User::join('recits', 'users.id', '=', 'recits.userid')
+                ->distinct()
+                ->count('users.id');
 
                 $destination = Destination::all();
                 return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
@@ -80,7 +84,9 @@ class HomeController extends Controller
                 $countRecit = Recit::count();
                 $count = Recit::distinct('destinationID')->count();
                 // $Users = User::count();
-                $Users = Recit::join('users', 'recits.userid', '=', 'users.id')->count();
+                $Users = User::join('recits', 'users.id', '=', 'recits.userid')
+                ->distinct()
+                ->count('users.id');
 
                 $destination = Destination::all();
                 return view('welcome', compact('Adventure', 'countRecit', 'count', 'Users', 'destination'));
@@ -117,7 +123,9 @@ class HomeController extends Controller
         $Adventure = $Adv->get();
 
         $countRecit = Recit::count();
-        $Users = Recit::join('users', 'recits.userid', '=', 'users.id')->count();
+        $Users = User::join('recits', 'users.id', '=', 'recits.userid')
+        ->distinct()
+        ->count('users.id');
 
         $count = Recit::distinct('destinationID')->count();
         // $Users = User::count();

@@ -39,7 +39,8 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
                             <div>
-
+                                <div class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</div>
+                                <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
                             </div>
 
                             <div class="ms-1">
