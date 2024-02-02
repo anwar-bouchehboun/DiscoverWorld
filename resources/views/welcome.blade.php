@@ -38,6 +38,10 @@
         <div class="relative max-w-5xl px-4 mx-auto mt-16 text-center sm:px-10"  >
             <h1 class="lg:text-7xl md:text-6xl text-4xl font-bold mb-6 md:!leading-[80px] text-white">Welcome To Platform For  Adventure</h1>
             <p class="text-base text-white">where thrilling escapades and captivating narratives await! Embark on a journey into the realms of imagination and exploration as you delve into a world brimming with excitement and wonder..</p>
+            <div class="mt-10">
+                <button class='px-6 py-3 text-white transition-all rounded-xl bg-cyan-900 hover:bg-cyan-800'><a href="{{route('poste.index')}}">Get started Post</a>
+                  </button>
+              </div>
             <div class="grid items-center gap-6 mt-16 sm:grid-cols-3">
               <div class="flex flex-col items-center p-5 text-center rounded bg-sky-900">
                 <h5 class="mb-2 text-2xl font-bold text-blue-600">{{$countRecit}}</h5>

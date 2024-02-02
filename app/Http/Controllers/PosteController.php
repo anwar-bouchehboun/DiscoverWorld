@@ -26,7 +26,7 @@ class PosteController extends Controller
 
     public function create()
     {
-        // return view('imagesposte.Addpost');
+         return view('poste.Poste');
     }
 
 

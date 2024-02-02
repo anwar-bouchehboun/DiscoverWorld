@@ -8,7 +8,10 @@
             <div class="min-h-[380px] relative z-50 h-full max-w-6xl mx-auto flex flex-col justify-center items-center text-center text-white p-6">
               <h2 class="mb-6 text-2xl font-bold sm:text-4xl">WShowcase Your Adventure for people</h2>
               <p class="text-base text-center text-gray-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan, nunc et tempus blandit, metus mi consectetur nibh, a pharetra felis turpis vitae ligula. Etiam laoreet velit nec neque ultrices, non consequat mauris tincidunt.</p>
-
+              <div class="mt-10">
+                <button class='px-6 py-3 text-white transition-all rounded-xl bg-cyan-900 hover:bg-cyan-800'><a href="{{route('poste.index')}}">Get started Post</a>
+                  </button>
+              </div>
             </div>
           </div>
         {{-- <div class="py-3 sm:py-32 bg-gradient-to-r from-cyan-300 to-blue-100">
