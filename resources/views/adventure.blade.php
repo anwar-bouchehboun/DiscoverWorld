@@ -1,41 +1,40 @@
 @extends('layouts.home')
+@section('title', 'Adventure')
 {{-- section hero --}}
 @section('content')
     <section>
         <div class="py-3 sm:py-32 bg-gradient-to-r from-cyan-300 to-blue-100">
+
             <div>
                 <h1 class="pb-6 text-6xl text-center text-white">Welcome to Our Awesome Website</h1>
                 <h4 class="pb-6 text-2xl text-center text-white">Discover amazing features and services that await you.</h4>
 
             </div>
-            {{-- <div class="px-6 py-20 mx-auto bg-sky-950 max-w-7xl lg:px-8">
-                <dl class="grid grid-cols-1 text-center gap-x-8 gap-y-16 lg:grid-cols-3">
-                  <div class="flex flex-col max-w-xs pb-3 px-10 mx-auto rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
-                  gap-y-4   bg-sky-900">
-                    <dt class="text-5xl text-white textleading-7">Adventure</dt>
-                    <img src="/storage/recit/icons8-trekking-100.png" width="100px" alt="" srcset="" class="mx-auto">
 
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$countRecit}}</dd>
-                  </div>
-                  <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
-                  gap-y-4   bg-sky-900">
-                    <dt class="text-5xl text-white textleading-7">Destination</dt>
-                    <img src="/storage/recit/d.png" width="100px" alt="" srcset="" class="mx-auto">
-
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">{{$count}}</dd>
-                  </div>
-                  <div class="flex flex-col max-w-xs pb-3 mx-6 rounded shadow-[02px_10px-3px_rgba(6,81,237,0.3)]
-                  gap-y-4   bg-sky-900">
-                    <dt class="text-5xl text-white textleading-7">Users Actif</dt>
-                    <img src="/storage/recit/users.png" width="100px" alt="" srcset="" class="mx-auto">
-
-                    <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                      {{$Users}}
-                  </dd>
-                  </div>
-                </dl>
-            </div> --}}
         </div>
+        {{-- <div class="relative max-w-5xl px-4 mx-auto mt-16 text-center sm:px-10">
+            <h1 class="lg:text-7xl md:text-6xl text-4xl font-bold mb-6 md:!leading-[80px]">Build Landing Pages with Typeform
+              Integration</h1>
+            <p class="text-base text-gray-400">Embark on a gastronomic journey with our curated dishes, delivered promptly
+              to your doorstep. Elevate your dining experience today. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.</p>
+            <div class="grid items-center gap-6 mt-16 sm:grid-cols-3">
+              <div class="flex flex-col items-center text-center">
+                <h5 class="mb-2 text-2xl font-bold text-blue-600">10+</h5>
+                <p>Years Experience</p>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <h5 class="mb-2 text-2xl font-bold text-blue-600">890</h5>
+                <p>Cases Solved</p>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <h5 class="mb-2 text-2xl font-bold text-blue-600">250</h5>
+                <p>Business Partners</p>
+              </div>
+            </div>
+
+          </div>
+        </div> --}}
     </section>
     {{-- cards --}}
     <section class="pt-10 lg:pt-[80px] pb-10 lg:pb-20 bg-[#F3F4F6]">
@@ -52,10 +51,10 @@
                     @endforeach
                 </div>
                 <div class="p-6">
+                   <h2>Desination: <span class="text-blue-500 ">  {{ $recit->city->destination }}</span></h2>
+                    <h3 class="text-gray-800 ">Auteur:  <span class="text-blue-500">{{ $recit->user->name }}</span></h3>
+                    <p class="font-bold text-gray-700 ">{{ $recit->conseils }}</p>
 
-                    <p class="text-center text-gray-700 ">{{ $recit->conseils }}</p>
-                    <p class="text-center text-blue-500">{{ $recit->city->destination }}</p>
-                    <h3 class="text-center text-gray-800">{{ $recit->user->name }}</h3>
                 </div>
             </div>
         </div>

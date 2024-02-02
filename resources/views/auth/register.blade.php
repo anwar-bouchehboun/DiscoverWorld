@@ -1,5 +1,5 @@
 
-
+@section('title', 'Registre')
     <x-guest-layout>
 
         <h1 class="text-2xl font-bold text-center">Sign up</h1>
